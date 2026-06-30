@@ -116,6 +116,20 @@ For container deployment, use the smaller runtime requirements file:
 pip install -r requirements-deploy.txt
 ```
 
+### 3.2 Streamlit Cloud deployment
+
+To deploy on Streamlit Cloud:
+
+1. Push your repo to GitHub.
+2. Open [https://share.streamlit.io/](https://share.streamlit.io/) and log in.
+3. Click **New app** and connect your GitHub repository.
+4. Select the branch (`master`) and main file (`app.py`).
+5. Streamlit Cloud will detect `requirements.txt` automatically and install dependencies.
+
+This repo also includes `runtime.txt` to pin Python 3.11 and `.streamlit/config.toml` for Streamlit settings.
+
+> Note: The dashboard reads generated CSV files from `data/processed/`. For the same app output, either commit the generated files to GitHub or run the pipeline in the deployed environment before opening the dashboard.
+
 ---
 
 ## 🏃 Usage

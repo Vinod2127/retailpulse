@@ -108,6 +108,14 @@ pip install -r requirements.txt
 
 > **Note:** `prophet` requires additional system dependencies. If installation fails, remove it from `requirements.txt` — the pipeline falls back to a linear forecast model automatically.
 
+### 3.1 Deployment dependencies
+
+For container deployment, use the smaller runtime requirements file:
+
+```bash
+pip install -r requirements-deploy.txt
+```
+
 ---
 
 ## 🏃 Usage

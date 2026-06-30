@@ -24,9 +24,8 @@ COPY requirements.txt .
 
 # Install Python dependencies
 # --no-cache-dir reduces image size
-# prophet is optional; remove it from requirements.txt if you hit build issues
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir -r requirements-deploy.txt
 
 # Copy the full project into the container
 COPY . .
@@ -42,9 +41,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=30s \
     CMD curl --fail http://localhost:8501/_stcore/health || exit 1
 
 # Default command: generate demo data then launch the dashboard
-# You can override this with: docker run retailpulse python run_pipeline.py
-CMD ["streamlit", "run", "app.py", \
-     "--server.port=8501", \
-     "--server.address=0.0.0.0", \
-     "--server.headless=true", \
-     "--browser.gatherUsageStats=false"]
+# If the required processed files are missing, the pipeline will create them on startup.
+CMD ["sh", "-c", "python run_pipeline.py --skip-churn --skip-forecast && streamlit run app.py --server.port=8501 --server.address=0.0.0.0 --server.headless=true --browser.gatherUsageStats=false"]

@@ -25,9 +25,10 @@ ENV/
 data/raw/*.csv
 data/raw/*.xlsx
 data/raw/*.zip
+data/processed/*.csv
 
-
-# ── Trained Models (large binary files) ──────────────────────────────────────
+# ── Trained Models (large binary files) ─────────────────────────────────────
+models/*.pkl
 
 
 # ── Generated Reports / Charts ────────────────────────────────────────────────

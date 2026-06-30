@@ -14,6 +14,11 @@ warnings.filterwarnings("ignore")
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from config import *
+import logging
+
+# Debug logging to stdout so Streamlit Cloud shows startup progress in logs
+logging.basicConfig(level=logging.INFO)
+print("[DEBUG] app.py imports complete")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # PAGE CONFIG
@@ -191,6 +196,8 @@ forecast, fc_name = load_forecast()
 churn     = load_churn()
 inventory = load_inventory()
 daily     = load_daily()
+
+print(f"[DEBUG] Data loaded — cleaned:{cleaned is not None}, rfm:{rfm is not None}, segmented:{segmented is not None}, forecast:{forecast is not None}, churn:{churn is not None}, inventory:{inventory is not None}, daily:{daily is not None}")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
